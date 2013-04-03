@@ -9,7 +9,7 @@ class Window
 public:
 	Window(HINSTANCE Instance);
 
-	bool Create(const int Width, const int Height, const int BPP, const bool FullScreen);
+	bool Create(const int Width, const int Height, const int BPP, const bool Fullscreen);
 	void Destroy();
 	void ProcessEvents();
 	void AttachGame(Game *Game);
@@ -19,7 +19,7 @@ public:
 	static LRESULT CALLBACK StaticWndProc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam);
 	LRESULT CALLBACK WndProc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
-	const float GetElapsedSeconds();
+	float GetElapsedSeconds();
 
 private:
 	Game *m_Game; // Pointer to game to run

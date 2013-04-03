@@ -37,8 +37,4 @@ void Game::Update()
 
 void Game::Render()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
-
-	glRotatef(m_RotationAngle, 0, 0, 1);
 }

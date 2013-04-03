@@ -47,6 +47,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies />
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,11 +65,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Polygon.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Colour.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Polygon.h" />
+    <ClInclude Include="Vertex.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

@@ -22,17 +22,17 @@ public:
 	const float GetElapsedSeconds();
 
 private:
-	Game *m_Game;
-	bool m_IsRunning;
+	Game *m_Game; // Pointer to game to run
+	bool m_IsRunning; // Window is running?
 	bool m_IsFullScreen;
 
 	float m_LastTime;
 
-	HWND m_HWEND;
-	HGLRC m_HGLRC;
-	HDC m_HDC;
-	RECT m_WindowRect;
-	HINSTANCE m_HInstance;
+	HWND m_HWND; // Window Handle
+	HGLRC m_HGLRC; // Rendering Context
+	HDC m_HDC; // Device Context
+	RECT m_WindowRect; // Window Boundaries
+	HINSTANCE m_HInstance; // App Instance
 	WNDCLASSEX m_WindowClass;
 
 	void SetupPixelFormat();

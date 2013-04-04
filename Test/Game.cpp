@@ -3,15 +3,9 @@
 
 #include "Game.h"
 
-Game::Game()
+Game::Game():
+	MainObject(15.0f)
 {
-	m_RotationAngle=0;
-	m_RotationSpeed=0;
-}
-Game:: Game(float RotationSpeed)
-{
-	m_RotationAngle=0;
-	m_RotationSpeed=RotationSpeed;
 }
 
 bool Game::Init()
@@ -24,17 +18,19 @@ bool Game::Init()
 
 void Game::Update()
 {
-	m_RotationAngle+=m_RotationSpeed;
-	if(m_RotationAngle>360)
-	{
-		m_RotationAngle-=360;
-	}
-	if(m_RotationAngle<0)
-	{
-		m_RotationAngle+=360;
-	}
+	MainObject.Update();
 }
 
 void Game::Render()
 {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+
+	MainObject.Render();
 }
+
+void Game::Shutdown()
+{
+
+}
+

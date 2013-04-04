@@ -1,3 +1,6 @@
+#ifndef _COLOUR_H
+#define _COLOUR_H
+
 class Colour
 {
 public:
@@ -18,3 +21,4 @@ public:
 	float m_B;
 	float m_A;
 };
+#endif

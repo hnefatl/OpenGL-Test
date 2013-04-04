@@ -1,11 +1,12 @@
 #ifndef _GAME_H
 #define _GAME_H
 
+#include "RotatingTriangle.h"
+
 class Game
 {
 public:
 	Game();
-	Game(float RotationSpeed);
 
 	bool Init();
 	void Update();
@@ -14,15 +15,8 @@ public:
 
 	void OnResize(int Width, int Height);
 
-	void SetRotationSpeed(float Speed);
-	const float GetRotationSpeed();
-
-	void SetRotationAngle(float Angle);
-	const float GetRotationAngle();
-
 private:
-	float m_RotationAngle;
-	float m_RotationSpeed;
+	RotatingTriangle MainObject;
 };
 
 #endif

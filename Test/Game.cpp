@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <GL/GL.h>
+#include <GL/GLU.h>
 
 #include "Game.h"
 
@@ -34,3 +35,15 @@ void Game::Shutdown()
 
 }
 
+void Game::OnResize(int Width, int Height)
+{
+	glViewport(0, 0, Width, Height);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	gluPerspective(45.0f, float(Width)/float(Height), 1.0f, 100.0f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}

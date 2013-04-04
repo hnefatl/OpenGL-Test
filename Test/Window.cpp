@@ -175,6 +175,11 @@ void Window::SetupPixelFormat()
 	SetPixelFormat(m_HDC, PixelFormat, &PFD);
 }
 
+void Window::FlipBuffers()
+{
+	SwapBuffers(m_HDC);
+}
+
 LRESULT Window::WndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 {
 	switch(Msg)
@@ -237,7 +242,7 @@ LRESULT Window::WndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 		{
 			int Height=HIWORD(lparam);
 			int Width=LOWORD(lparam);
-			// GetAttachedGame()->OnResize(Width, Height);
+			GetAttachedGame()->OnResize(Width, Height);
 		}
 	break;
 

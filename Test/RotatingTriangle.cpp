@@ -51,6 +51,8 @@ void RotatingTriangle::Update()
 	{
 		m_RotationAngle+=360;
 	}
+
+	glRotatef(m_RotationAngle, 0, 0, 1);
 }
 void RotatingTriangle::Render()
 {

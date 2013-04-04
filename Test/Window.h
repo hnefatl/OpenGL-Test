@@ -14,6 +14,8 @@ public:
 	void ProcessEvents();
 	void AttachGame(Game *Game);
 
+	void FlipBuffers();
+
 	const bool IsRunning();
 
 	static LRESULT CALLBACK StaticWndProc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam);

@@ -1,27 +1,21 @@
 #ifndef _POLYGON_H
 #define _POLYGON_H
 #include <vector>
-#include "Colour.h"
-#include "Vertex.h"
 
 class Polygon
 {
 public:
-	Polygon(int Points);
+	Polygon();
+	virtual ~Polygon();
 
-	virtual void Update();
+	virtual void Update(float ElapsedTime);
 	virtual void Render();
 
-	virtual void AddVertex(Vertex Point);
-	virtual void AddVertex(Vertex Point, Colour Colour);
-	virtual void RemoveVertex(int Number);
-	virtual void RemoveVertex(Vertex Point);
-
-	virtual Vertex &GetVertex(int Number);
+	void AddVertex(float X, float Y, float Z);
+	void AddVertex(float X, float Y, float Z, float R, float G, float B);
 
 protected:
-	int m_Points;
-	std::vector<Vertex> m_Vertices;
-	std::vector<Colour> m_Colours;
+	std::vector<float> m_Vertices;
+	std::vector<float> m_Colours;
 };
 #endif

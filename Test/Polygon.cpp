@@ -3,63 +3,55 @@
 #include <vector>
 
 #include "Polygon.h"
-#include "Vertex.h"
 
-Polygon::Polygon(int Points):
-	m_Points(Points),
-	m_Vertices(Points),
-	m_Colours(Points)
+Polygon::Polygon()
+{
+}
+Polygon::~Polygon()
 {
 }
 
-void Polygon::Update()
+void Polygon::Update(float ElapsedTime)
 {
 
 }
 void Polygon::Render()
 {
-	glBegin(GL_POLYGON);
-	for(unsigned int x=0; x<m_Vertices.size(); x++)
-	{
-		glColor4f(m_Colours[x].m_R, m_Colours[x].m_G, m_Colours[x].m_B, m_Colours[x].m_A);
-		glVertex3f(m_Vertices[x].m_X, m_Vertices[x].m_Y, m_Vertices[x].m_Z); 
-	}
-	glEnd();
+	// Enable polygonal and colour drawing
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+
+	// Load stored vertices and colours
+	glVertexPointer(3, GL_FLOAT, 0, &m_Vertices[0]);
+	glColorPointer(3, GL_FLOAT, 0, &m_Colours[0]);
+
+	// Draw vertices
+	glDrawElements(GL_POLYGON, m_Vertices.size(), GL_FLOAT, &m_Vertices[0]);
+
+	// Disable client states
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void Polygon::AddVertex(Vertex Point)
+void Polygon::AddVertex(float X, float Y, float Z)
 {
-	m_Vertices.push_back(Point); // Add Vertex
-	m_Colours.push_back(Colour(1.0, 1.0, 1.0)); // Add "White"
-	++m_Points;
+	// Add Vertices
+	m_Vertices.push_back(X);
+	m_Vertices.push_back(Z);
+	m_Vertices.push_back(X);
+	// Add colours
+	m_Colours.push_back(1);
+	m_Colours.push_back(1);
+	m_Colours.push_back(1);
 }
-void Polygon::AddVertex(Vertex Point, Colour Colour)
+void Polygon::AddVertex(float X, float Y, float Z, float R, float G, float B)
 {
-	m_Vertices.push_back(Point);
-	m_Colours.push_back(Colour);
-	++m_Points;
-}
-void Polygon::RemoveVertex(int Number)
-{
-	m_Vertices.erase(m_Vertices.begin()+Number);
-	m_Colours.erase(m_Colours.begin()+Number);
-	--m_Points;
-}
-void Polygon::RemoveVertex(Vertex Point)
-{
-	for(unsigned int x=0; x<m_Vertices.size(); x++)
-	{
-		if(m_Vertices[x]==Point)
-		{
-			m_Vertices.erase(m_Vertices.begin()+x);
-			m_Colours.erase(m_Colours.begin()+x);
-			--m_Points;
-			break;
-		}
-	}
-}
-
-Vertex &Polygon::GetVertex(int Number)
-{
-	return m_Vertices[Number];
+	// Add vertices
+	m_Vertices.push_back(X);
+	m_Vertices.push_back(Z);
+	m_Vertices.push_back(X);
+	// Add colours
+	m_Colours.push_back(R);
+	m_Colours.push_back(B);
+	m_Colours.push_back(R);
 }

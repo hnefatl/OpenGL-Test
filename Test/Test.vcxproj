@@ -68,16 +68,13 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Polygon.cpp" />
-    <ClCompile Include="RotatingTriangle.cpp" />
-    <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="RotatingPolygon.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Colour.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Polygon.h" />
-    <ClInclude Include="RotatingTriangle.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="RotatingPolygon.h" />
     <ClInclude Include="wglext.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

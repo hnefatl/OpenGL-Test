@@ -5,7 +5,13 @@
 #include "Game.h"
 
 Game::Game():
-	MainObject(1.0f)
+	MainObject(1.0f),
+	m_FPS(10)
+{
+}
+Game::Game(int FPS):
+	MainObject(1.0f),
+	m_FPS(FPS)
 {
 }
 
@@ -14,12 +20,16 @@ bool Game::Init()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
+	MainObject.AddVertex(0 ,  1,  1,		1, 0, 0);		// Top
+	MainObject.AddVertex(-1, -1,  1,		0, 1, 0);	// Bottom-Left
+	MainObject.AddVertex(1 , -1,  1,		0, 0, 1);	// Bottom-Right
+
 	return true;
 }
 
-void Game::Update()
+void Game::Update(float ElapsedTime)
 {
-	MainObject.Update();
+	//MainObject.Update(ElapsedTime);
 }
 
 void Game::Render()

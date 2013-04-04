@@ -50,11 +50,14 @@ int WINAPI WinMain(HINSTANCE instance,
 	}
 
 	// Main Game Loop
+	float ElapsedTime = 0;
 	while(GameWindow.IsRunning())
 	{
 		GameWindow.ProcessEvents();
 
-		GLGame.Update(); // Update logic
+		ElapsedTime=GameWindow.GetElapsedSeconds();
+
+		GLGame.Update(ElapsedTime); // Update logic
 		GLGame.Render(); // Render scene
 
 		GameWindow.FlipBuffers();

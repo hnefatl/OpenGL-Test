@@ -8,6 +8,10 @@ int main(int argc, char* argv[])
 }
 #endif
 
+#define WIN32_LEAN_AND_MEAN
+#define WIN32_EXTRA_LEAN
+#define GLX_GLXEXT_LEGACY
+
 #ifdef _WIN32
 #include <windows.h>
 #include <GL/GL.h>
@@ -21,13 +25,13 @@ int WINAPI WinMain(HINSTANCE instance,
 				   int cmdshow)
 {
 	// Window settings
-	const int WINDOW_HEIGHT=700;
-	const int WINDOW_WIDTH=700;
+	const int WINDOW_WIDTH=1024;
+	const int WINDOW_HEIGHT=768;
 	const int WINDOW_BPP=16;
 	const bool WINDOW_FULLSCREEN=false;
 
-	Window GameWindow=Window(instance);
-	Game GLGame=Game();
+	Window GameWindow(instance);
+	Game GLGame;
 
 	GameWindow.AttachGame(&GLGame);
 

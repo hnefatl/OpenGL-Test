@@ -19,7 +19,7 @@ void Polygon::Update()
 void Polygon::Render()
 {
 	glBegin(GL_POLYGON);
-	for(int x=0; x<m_Vertices.size(); x++)
+	for(unsigned int x=0; x<m_Vertices.size(); x++)
 	{
 		glColor4f(m_Colours[x].m_R, m_Colours[x].m_G, m_Colours[x].m_B, m_Colours[x].m_A);
 		glVertex3f(m_Vertices[x].m_X, m_Vertices[x].m_Y, m_Vertices[x].m_Z); 
@@ -47,7 +47,7 @@ void Polygon::RemoveVertex(int Number)
 }
 void Polygon::RemoveVertex(Vertex Point)
 {
-	for(int x=0; x<m_Vertices.size(); x++)
+	for(unsigned int x=0; x<m_Vertices.size(); x++)
 	{
 		if(m_Vertices[x]==Point)
 		{

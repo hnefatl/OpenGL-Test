@@ -4,7 +4,9 @@
 
 #include "Window.h"
 #include "wglext.h"
+#include "Game.h"
 
+typedef HGLRC (APIENTRYP PFNWGLCREATECONTEXTATTRIBSARBPROC)(HDC, HGLRC, const int*);
 PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
 Window::Window(HINSTANCE Instance):
@@ -13,7 +15,6 @@ Window::Window(HINSTANCE Instance):
 	m_HInstance(Instance),
 	m_LastTime(0)
 {
-
 }
 
 bool Window::Create(const int Width, const int Height, const int BPP, const bool Fullscreen)
@@ -40,7 +41,7 @@ bool Window::Create(const int Width, const int Height, const int BPP, const bool
 	m_WindowClass.hCursor			=LoadCursor(NULL, IDC_ARROW);
 	m_WindowClass.hbrBackground		=NULL;
 	m_WindowClass.lpszMenuName		=NULL;
-	m_WindowClass.lpszClassName		=NULL;
+	m_WindowClass.lpszClassName		="TESTOPENGLWINDOW";
 	m_WindowClass.hIconSm			=LoadIcon(NULL, IDI_WINLOGO);
 
 	// Attempt to register WIndow Class
@@ -64,7 +65,7 @@ bool Window::Create(const int Width, const int Height, const int BPP, const bool
 		if(ChangeDisplaySettings(&ScreenSettings, CDS_FULLSCREEN)!=DISP_CHANGE_SUCCESSFUL)
 		{
 			// Display mode alteration failed; switch to windowed as backup
-			MessageBox(NULL, "Display mode failed", NULL, MB_OK);
+			MessageBox(NULL, "Display mode failed. Falling back to default.", NULL, MB_OK);
 			m_IsFullScreen=false;
 		}
 	}
@@ -87,25 +88,26 @@ bool Window::Create(const int Width, const int Height, const int BPP, const bool
 	// Class registered, now create window
 	m_HWND=CreateWindowEx(
 		NULL,										// Window Extended Style
-		"GLClass",									// Class Name
+		"TESTOPENGLWINDOW",							// Class Name
 		"Test",										// App Name
 		WinStyle|WS_CLIPCHILDREN|WS_CLIPSIBLINGS,	// Window Style
 		0,											// X
 		0,											// Y
 		m_WindowRect.right-m_WindowRect.left,		// Width
 		m_WindowRect.bottom-m_WindowRect.top,		// Height
-		NULL,										//Parent Handle
+		NULL,										// Parent Handle
 		NULL,										// Menu Handle
 		m_HInstance,								// Application Instance,
 		this);										// Pointer to this Window
 
-	if(!m_HWND)
+	if(m_HWND==NULL)
 	{
 		// Window creation failed (NULL)
 		return 1;
 	}
 
 	m_HDC=GetDC(m_HWND); // Get Device Context
+
 	ShowWindow(m_HWND, SW_SHOW); // Display Window
 	UpdateWindow(m_HWND); // Update Window
 
@@ -194,7 +196,7 @@ LRESULT Window::WndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 			{
 				WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
 				WGL_CONTEXT_MINOR_VERSION_ARB, 0,
-				0, // End of array
+				0 // End of array
 			};
 
 			// Create temporary context using deprecated function to get pointer to function
@@ -261,7 +263,7 @@ LRESULT Window::WndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 	return DefWindowProc(hwnd, Msg, wparam, lparam);
 }
 
-LRESULT Window::StaticWndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK Window::StaticWndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 {
 	Window *window=NULL;
 
@@ -286,7 +288,7 @@ LRESULT Window::StaticWndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 	}
 
 	// Call window's member WndProc (allowing us to access member variables)
-	return window->WndProc(hwnd, Msg, lparam, wparam);
+	return window->WndProc(hwnd, Msg, wparam, lparam);
 }
 
 float Window::GetElapsedSeconds()

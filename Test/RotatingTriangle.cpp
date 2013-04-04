@@ -7,7 +7,8 @@
 
 RotatingTriangle::RotatingTriangle(float RotationSpeed)
 	:Polygon(3),
-	m_RotationSpeed(RotationSpeed)
+	m_RotationSpeed(RotationSpeed),
+	m_RotationAngle(0)
 {
 	for(int x=0; x<3; x++) // Default Data (Blanks)
 	{
@@ -17,7 +18,8 @@ RotatingTriangle::RotatingTriangle(float RotationSpeed)
 }
 RotatingTriangle::RotatingTriangle(float RotationSpeed, Vertex One, Vertex Two, Vertex Three)
 	:Polygon(3),
-	m_RotationSpeed(RotationSpeed)
+	m_RotationSpeed(RotationSpeed),
+	m_RotationAngle(0)
 {
 	m_Vertices.push_back(One);
 	m_Vertices.push_back(Two);
@@ -30,7 +32,8 @@ RotatingTriangle::RotatingTriangle(float RotationSpeed, Vertex One, Vertex Two, 
 }
 RotatingTriangle::RotatingTriangle(float RotationSpeed, Vertex VOne, Colour COne, Vertex VTwo, Colour CTwo, Vertex VThree, Colour CThree)
 	:Polygon(3),
-	m_RotationSpeed(RotationSpeed)
+	m_RotationSpeed(RotationSpeed),
+	m_RotationAngle(0)
 {
 	m_Vertices.push_back(VOne);
 	m_Colours.push_back(COne);

@@ -5,7 +5,7 @@
 #include "Game.h"
 
 Game::Game():
-	MainObject(15.0f)
+	MainObject(1.0f)
 {
 }
 

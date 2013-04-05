@@ -5,12 +5,12 @@
 #include "Game.h"
 
 Game::Game():
-	MainObject(1.0f),
+	MainObject(100.0f),
 	m_FPS(10)
 {
 }
 Game::Game(int FPS):
-	MainObject(1.0f),
+	MainObject(100.0f),
 	m_FPS(FPS)
 {
 }
@@ -20,16 +20,16 @@ bool Game::Init()
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
-	MainObject.AddVertex(0 ,  1,  1,		1, 0, 0);		// Top
-	MainObject.AddVertex(-1, -1,  1,		0, 1, 0);	// Bottom-Left
-	MainObject.AddVertex(1 , -1,  1,		0, 0, 1);	// Bottom-Right
+	MainObject.AddVertex(0 ,  1,  -4,		1, 0, 0);		// Top
+	MainObject.AddVertex(-1, -1,  -4,		0, 1, 0);	// Bottom-Left
+	MainObject.AddVertex(1 , -1,  -4,		0, 0, 1);	// Bottom-Right
 
 	return true;
 }
 
 void Game::Update(float ElapsedTime)
 {
-	//MainObject.Update(ElapsedTime);
+	MainObject.Update(ElapsedTime);
 }
 
 void Game::Render()
@@ -38,6 +38,32 @@ void Game::Render()
 	glLoadIdentity();
 
 	MainObject.Render();
+}
+
+bool Game::HandleInput(WPARAM Data)
+{
+	if(Data==VK_ESCAPE) // If escape key pressed
+	{
+		return false;
+	}
+	else if(Data==VK_UP)
+	{
+		MainObject.GetRotationSpeed()+=10.0f;
+	}
+	else if(Data==VK_DOWN)
+	{
+		MainObject.GetRotationSpeed()-=10.0f;
+	}
+	else if(Data==VK_LEFT)
+	{
+		MainObject.GetRotationSpeed()-=1.0f;
+	}
+	else if(Data==VK_RIGHT)
+	{
+		MainObject.GetRotationSpeed()+=1.0f;
+	}
+
+	return true;
 }
 
 void Game::Shutdown()

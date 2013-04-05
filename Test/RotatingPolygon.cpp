@@ -16,7 +16,7 @@ RotatingPolygon::~RotatingPolygon()
 
 void RotatingPolygon::Update(float ElapsedTime)
 {
-	m_RotationAngle+=m_RotationSpeed;
+	m_RotationAngle+=m_RotationSpeed*ElapsedTime;
 	if(m_RotationAngle>360)
 	{
 		m_RotationAngle-=360;
@@ -33,4 +33,9 @@ void RotatingPolygon::Render()
 {
 	glRotatef(m_RotationAngle, 0, 0, 1);
 	Polygon::Render();
+}
+
+float &RotatingPolygon::GetRotationSpeed()
+{
+	return m_RotationSpeed;
 }

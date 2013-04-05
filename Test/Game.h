@@ -14,6 +14,8 @@ public:
 	void Render();
 	void Shutdown();
 
+	bool HandleInput (WPARAM Data);
+
 	void OnResize(int Width, int Height);
 
 private:

@@ -25,8 +25,8 @@ int WINAPI WinMain(HINSTANCE instance,
 				   int cmdshow)
 {
 	// Window settings
-	const int WINDOW_WIDTH=1024;
-	const int WINDOW_HEIGHT=768;
+	const int WINDOW_WIDTH=512;
+	const int WINDOW_HEIGHT=394;
 	const int WINDOW_BPP=16;
 	const bool WINDOW_FULLSCREEN=false;
 

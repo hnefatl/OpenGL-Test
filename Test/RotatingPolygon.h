@@ -12,6 +12,8 @@ public:
 	virtual void Update(float ElapsedTime); // Override superclass Polygon's default updater
 	virtual void Render(); // Override superclass Polygon's default renderer
 
+	float &GetRotationSpeed();
+
 protected:
 	float m_RotationAngle;
 	float m_RotationSpeed;

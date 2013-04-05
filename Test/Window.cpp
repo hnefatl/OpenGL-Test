@@ -6,7 +6,6 @@
 #include "wglext.h"
 #include "Game.h"
 
-typedef HGLRC (APIENTRYP PFNWGLCREATECONTEXTATTRIBSARBPROC)(HDC, HGLRC, const int*);
 PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
 Window::Window(HINSTANCE Instance):
@@ -250,9 +249,10 @@ LRESULT Window::WndProc(HWND hwnd, UINT Msg, WPARAM wparam, LPARAM lparam)
 
 	case WM_KEYDOWN:
 		{
-			if(wparam==VK_ESCAPE) // If escape key pressed
+			if(!(m_Game->HandleInput(wparam)))
 			{
-				DestroyWindow(m_HWND); // Send a WM_DESTROY message
+				// Exit required
+				DestroyWindow(m_HWND);
 			}
 		}
 	break;
